@@ -19,9 +19,6 @@ class MainActivity : AppCompatActivity() {
 
 //        raman.getName()
     }
-    private fun init(){
-        user = User("", "", 1)
-    }
 
     // factoryMethodPattern
     private fun BulDackRaman() {
