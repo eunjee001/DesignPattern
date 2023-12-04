@@ -1,12 +1,11 @@
 package com.kkyoungs.myapplication
 
 class EKRamanStore:RamanStore() {
-    override fun createRaman(type: String): Raman {
-         when (type) {
-             "BulDack" -> {
+    override fun createRaman(type: String): Raman? {
+         return when (type) {
+             "BulDak" -> {
                  return BulDackRaman()
              }
-
              "Sin" -> {
                  return SinRaman()
              }
@@ -15,7 +14,9 @@ class EKRamanStore:RamanStore() {
                  return KokKokRaman()
              }
 
+             else -> {
+                  null
+             }
          }
-        return Raman()
     }
 }
