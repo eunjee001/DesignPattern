@@ -1,6 +1,6 @@
-package com.kkyoungs.myapplication
+package com.kkyoungs.myapplication.factorymethod
 
-class EKRamanStore:RamanStore() {
+class EKRamanStore: RamanStore() {
     override fun createRaman(type: String): Raman? {
          return when (type) {
              "BulDak" -> {

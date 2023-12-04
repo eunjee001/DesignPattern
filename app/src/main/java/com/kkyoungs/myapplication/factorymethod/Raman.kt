@@ -1,4 +1,4 @@
-package com.kkyoungs.myapplication
+package com.kkyoungs.myapplication.factorymethod
 
 open class Raman {
     var name :String = ""
@@ -28,7 +28,7 @@ open class Raman {
 
 }
 
-class BulDackRaman:Raman(){
+class BulDackRaman: Raman(){
     init {
         name = "BulDackRaman"
     }

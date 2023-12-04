@@ -1,4 +1,6 @@
-package com.kkyoungs.myapplication
+package com.kkyoungs.myapplication.factorymethod
+
+import com.kkyoungs.myapplication.factorymethod.Raman
 
 abstract class RamanStore {
         fun orderRaman(type: String): Raman? {
@@ -10,5 +12,5 @@ abstract class RamanStore {
             return raman
         }
 
-        abstract fun createRaman(type:String):Raman?
+        abstract fun createRaman(type:String): Raman?
 }
