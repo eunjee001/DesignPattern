@@ -6,11 +6,6 @@ public class User implements Cloneable{
     private String name, job;
     private int age;
 
-    User(String name, String job, int age){
-        this.name = name;
-        this.job = job;
-        this.age = age;
-    }
     public void setName(String name){
         this.name = name;
     }

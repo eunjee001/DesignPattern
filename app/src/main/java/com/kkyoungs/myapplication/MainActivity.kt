@@ -3,21 +3,16 @@ package com.kkyoungs.myapplication
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.kkyoungs.myapplication.factorymethod.EKRamanStore
-import com.kkyoungs.myapplication.factorymethod.Raman
 import com.kkyoungs.myapplication.prototype.User
 
 class MainActivity : AppCompatActivity() {
     var ekStore = EKRamanStore()
-    private lateinit var user : User
-    constructor(name : String, job : String, age:Int) :this
+    private var user = User()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        init()
         BulDackRaman()
         SinRaman()
         protoTypePattern()
-
-//        raman.getName()
     }
 
     // factoryMethodPattern
@@ -35,6 +30,7 @@ class MainActivity : AppCompatActivity() {
         user.job = "왕쟈"
         user.age = 4
 
+        println("--------------------------prototype Pattern------------------------------")
         println("첫번째 user1" + ", 이름 : "+user.name + ", 직업 : "+user.job + ", 나이 : "+user.age)
 
         val user2 = user.clone() as User

@@ -4,6 +4,8 @@ open class Raman {
     var name :String = ""
 
     fun prepare(){
+        println("--------------------------factoryMethod Pattern------------------------------")
+
         println("preparing ~ $name")
     }
     fun cook(){
