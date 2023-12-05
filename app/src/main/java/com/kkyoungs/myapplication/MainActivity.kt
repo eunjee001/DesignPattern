@@ -7,6 +7,12 @@ import com.kkyoungs.myapplication.prototype.User
 
 class MainActivity : AppCompatActivity() {
     var ekStore = EKRamanStore()
+
+    /**
+     * 오류내용 : Cannot access '<init>': it is package-private in 'User'
+     * User 초기화 요류가 났지만 User class에서 오버라이딩 한부분을 제거하고 아래와같이 초기화 하였더니 오류 해결 ~!
+     */
+    
     private var user = User()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
