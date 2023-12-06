@@ -2,6 +2,7 @@ package com.kkyoungs.myapplication
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.kkyoungs.myapplication.Singleton.SingletonEx
 import com.kkyoungs.myapplication.factorymethod.EKRamanStore
 import com.kkyoungs.myapplication.prototype.User
 
@@ -19,6 +20,7 @@ class MainActivity : AppCompatActivity() {
         BulDackRaman()
         SinRaman()
         protoTypePattern()
+        testSingleTon()
     }
 
     // factoryMethodPattern
@@ -48,5 +50,15 @@ class MainActivity : AppCompatActivity() {
         println("세번째 user2" + ", 이름 : "+user2.name + ", 직업 : "+user2.job + ", 나이 : "+user2.age)
         println("네번째 user1" + ", 이름 : "+user.name + ", 직업 : "+user.job + ", 나이 : "+user.age)
 
+    }
+
+    // SingleTonPattern
+    private fun testSingleTon(){
+        println("----------------------------singleton Pattern -------------------------------------")
+        val singleton1 = SingletonEx.getInstance(this)
+        val singleton2 = SingletonEx.getInstance(this)
+        singleton1.printName("로또")
+        singleton2.printName("꼬미")
+        SingletonEx.getInstance(this).printName("메롱")
     }
 }
