@@ -3,8 +3,14 @@ package com.kkyoungs.myapplication
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.kkyoungs.myapplication.Singleton.SingletonEx
+import com.kkyoungs.myapplication.bridge.Best
+import com.kkyoungs.myapplication.bridge.Kkommi
+import com.kkyoungs.myapplication.bridge.Lotto
+import com.kkyoungs.myapplication.bridge.Puppy
+import com.kkyoungs.myapplication.bridge.Treasure
 import com.kkyoungs.myapplication.factorymethod.EKRamanStore
 import com.kkyoungs.myapplication.prototype.User
+import org.junit.jupiter.api.Assertions.*
 
 class MainActivity : AppCompatActivity() {
     var ekStore = EKRamanStore()
@@ -15,12 +21,14 @@ class MainActivity : AppCompatActivity() {
      */
     
     private var user = User()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         BulDackRaman()
         SinRaman()
         protoTypePattern()
         testSingleTon()
+        bridgeTest()
     }
 
     // factoryMethodPattern
@@ -60,5 +68,34 @@ class MainActivity : AppCompatActivity() {
         singleton1.printName("로또")
         singleton2.printName("꼬미")
         SingletonEx.getInstance(this).printName("메롱")
+    }
+
+    /**
+     * Junit assert
+     * - assertEquals와 assertNotEquals는 인스턴스의 동등성 비교를 위해 사용
+     * - assertEquals의 앞에는 나오기 기대되는 값이오고, 뒤에는 실제 테스트에서 나온값
+     * 계속 AssertionFailedError 오류가 났는데 아래와같이 정확히 쓰니까 오류가 나지 않았다 !!
+     * 이렇게 테스트 코드 작성 완료 및 브리지 패턴 완료
+     *
+     *
+     * 브리지 패턴은 추상화(abstraction)와 구현 (implement)이 독립적으로 다른 계층 구조를 가질 수 있고, 클라이언트 어플리케이션으로 부터 구현을 숨기고 싶을때 사용.
+     *
+     * Bridge Pattern
+     */
+    private fun bridgeTest(){
+        val lotto :Puppy = Lotto()
+        val kkommi :Puppy = Kkommi()
+
+        val best = Best(lotto)
+        assertEquals("최고 lotto", best.cute())
+
+        val treasure = Treasure(kkommi)
+        assertEquals("보물 kkommi", treasure.cute())
+
+        println("----------------------------bridge Pattern -------------------------------------")
+
+        println(best.cute())
+        println(treasure.cute())
+
     }
 }
