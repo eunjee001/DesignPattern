@@ -10,6 +10,7 @@ import com.kkyoungs.myapplication.bridge.Puppy
 import com.kkyoungs.myapplication.bridge.Treasure
 import com.kkyoungs.myapplication.factorymethod.EKRamanStore
 import com.kkyoungs.myapplication.prototype.User
+import com.kkyoungs.myapplication.proxy.Proxy_Image
 import org.junit.jupiter.api.Assertions.*
 
 class MainActivity : AppCompatActivity() {
@@ -29,6 +30,7 @@ class MainActivity : AppCompatActivity() {
         protoTypePattern()
         testSingleTon()
         bridgeTest()
+        proxy()
     }
 
     // factoryMethodPattern
@@ -96,6 +98,22 @@ class MainActivity : AppCompatActivity() {
 
         println(best.cute())
         println(treasure.cute())
+
+    }
+
+    /**
+     * 메인에서 Real_image에 직접 접근 하지 않고, Proxy_image 객체를 생성해서 대신 시킨다.
+     * Proxy 는 displayImage() 메서드를 호출하고, 그 반환 값을 메인에 반환
+     *
+     * proxy pattern
+     */
+    private fun proxy(){
+        println("----------------------------proxy Pattern -------------------------------------")
+        val image1 = Proxy_Image("baby.png")
+        val image2 = Proxy_Image("baby_fighting.png")
+        image1.displayImage()
+        println()
+        image2.displayImage()
 
     }
 }
