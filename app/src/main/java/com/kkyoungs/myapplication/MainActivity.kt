@@ -9,6 +9,8 @@ import com.kkyoungs.myapplication.bridge.Lotto
 import com.kkyoungs.myapplication.bridge.Puppy
 import com.kkyoungs.myapplication.bridge.Treasure
 import com.kkyoungs.myapplication.factorymethod.EKRamanStore
+import com.kkyoungs.myapplication.iterator.Baby
+import com.kkyoungs.myapplication.iterator.Baby_Group
 import com.kkyoungs.myapplication.prototype.User
 import com.kkyoungs.myapplication.proxy.Proxy_Image
 import org.junit.jupiter.api.Assertions.*
@@ -31,6 +33,7 @@ class MainActivity : AppCompatActivity() {
         testSingleTon()
         bridgeTest()
         proxy()
+        iterator()
     }
 
     // factoryMethodPattern
@@ -115,5 +118,21 @@ class MainActivity : AppCompatActivity() {
         println()
         image2.displayImage()
 
+    }
+
+    private fun iterator(){
+        val babyGroup = Baby_Group(2)
+        babyGroup.addBaby(Baby("로또", 4))
+        babyGroup.addBaby(Baby("꼬미", 1))
+
+        val iterator= babyGroup.iterator()
+
+        while (iterator.hasNext()){
+            val baby : Baby = iterator.next()
+
+            println("----------------------------iterator Pattern -------------------------------------")
+            println("이름 : " + baby.name)
+            println("나이 : " + baby.age)
+        }
     }
 }
