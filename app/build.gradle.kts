@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("kotlin-kapt")
 }
 
 android {
@@ -33,6 +34,10 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    dataBinding {
+        enable = true
+    }
+
     /**
      * Error: Execution failed for task ':app:transformResourcesWithMergeJavaResForDebug'.
      * More than one file was found with OS independent path 'META-INF/LICENSE'

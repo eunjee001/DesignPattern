@@ -2,12 +2,16 @@ package com.kkyoungs.myapplication
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import com.kkyoungs.myapplication.Observer.ObserverViewModel
 import com.kkyoungs.myapplication.Singleton.SingletonEx
 import com.kkyoungs.myapplication.bridge.Best
 import com.kkyoungs.myapplication.bridge.Kkommi
 import com.kkyoungs.myapplication.bridge.Lotto
 import com.kkyoungs.myapplication.bridge.Puppy
 import com.kkyoungs.myapplication.bridge.Treasure
+import com.kkyoungs.myapplication.databinding.ActivityMainBinding
 import com.kkyoungs.myapplication.factorymethod.EKRamanStore
 import com.kkyoungs.myapplication.iterator.Baby
 import com.kkyoungs.myapplication.iterator.Baby_Group
@@ -15,8 +19,9 @@ import com.kkyoungs.myapplication.prototype.User
 import com.kkyoungs.myapplication.proxy.Proxy_Image
 import org.junit.jupiter.api.Assertions.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), Observer<String> {
     var ekStore = EKRamanStore()
+    private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
 
     /**
      * 오류내용 : Cannot access '<init>': it is package-private in 'User'
@@ -27,6 +32,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(binding.root)
+
         BulDackRaman()
         SinRaman()
         protoTypePattern()
@@ -34,6 +41,7 @@ class MainActivity : AppCompatActivity() {
         bridgeTest()
         proxy()
         iterator()
+        observer()
     }
 
     // factoryMethodPattern
@@ -135,4 +143,29 @@ class MainActivity : AppCompatActivity() {
             println("나이 : " + baby.age)
         }
     }
+
+    /**
+     * Observer Pattern
+     * 버튼이 눌릴때마다 라이브 데이터를 바꾸는 로직.
+     * 버튼이 눌릴때마다 ViewModel에 LiveData를 만들고, 그 데이터에 옵저버를 달아서 값이 바뀔 때 마다 onChange 메소드 호출
+     */
+    private fun observer(){
+        // 프로바이더를 통해 뷰모델 가져오기
+        val viewModel : ObserverViewModel = ViewModelProvider(this)[ObserverViewModel::class.java]
+        // 뷰모델에 있는 LiveData의 값의 변경사항을 관찰 할 수 있는 옵저버 설정한다.
+        viewModel.liveData.observe(this, this)
+
+        var i = 0
+        binding.observerButton.setOnClickListener {
+            viewModel.liveData.postValue("$i")
+            i++
+        }
+    }
+
+    //LiveData 가 바뀌면 호출.
+    override fun onChanged(value: String) {
+        println("----------------------------observer Pattern -------------------------------------")
+        println(">>>>>>>>>> test $value")
+    }
+
 }
