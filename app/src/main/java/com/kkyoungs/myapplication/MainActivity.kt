@@ -19,6 +19,15 @@ import com.kkyoungs.myapplication.prototype.User
 import com.kkyoungs.myapplication.proxy.Proxy_Image
 import org.junit.jupiter.api.Assertions.*
 
+/**
+ * 1.factoryMethodPattern
+ * 2.prototypePattern
+ * 3.SingleTonPattern
+ * 4.Bridge Pattern
+ * 5.proxy pattern
+ * 6.iterator
+ * 7.Observer
+ */
 class MainActivity : AppCompatActivity(), Observer<String> {
     var ekStore = EKRamanStore()
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
@@ -127,6 +136,9 @@ class MainActivity : AppCompatActivity(), Observer<String> {
         image2.displayImage()
 
     }
+    /**
+     * iterator pattern
+     */
 
     private fun iterator(){
         val babyGroup = Baby_Group(2)
